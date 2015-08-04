@@ -72,7 +72,7 @@ Action action = new ViewAction("SHOW_USER", data);
 
 ### Stores
 
-This is perhaps the **most difficult** to get Flux concep. 
+This is perhaps the **most difficult** to get Flux concept. 
 
 Also If you have worked with Clean Architecture before it also will be uncomfortable to accept, because Stores will assume responsibilities that were previously separated into different layers.
 
