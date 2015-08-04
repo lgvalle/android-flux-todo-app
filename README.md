@@ -4,7 +4,7 @@ Finding a good architecture for Android applications is not easy. Google seems t
 
 But defining an architecture for your application is important. Like it or not, **every application is going to have an architecture**. So you'd better be the one defining it then let it just emerge.
 
-# Today: Clean Architecture
+## Today: Clean Architecture
 
 Current trend is to adapt **[Clean Architecture][clean-architecture]**, a 2012 Uncle Bob proposal for web applications.
 
@@ -20,7 +20,7 @@ So it seems that most of the apps will not benefit from things like decoupled In
 
 They may just need a **simple way to organise code, work together efficiently and find bugs easily**.
 
-# Introducing Flux Architecture
+## Introducing Flux Architecture
 
 **[Flux Architecture][flux-arch]** is used by Facebook to build their client- side web applications. Like _Clean Architecture_ it is not intended for mobile apps, but its features and simplicity will allow us to adapt it very well to Android projects.
 
@@ -42,7 +42,7 @@ It also provides great advantages when testing the application as discussed belo
 This three parts communicate through **Actions**: Simple plain objects, identified by a type, containing the data related to that action.
 
 
-# Flux Android Architecture
+## Flux Android Architecture
 
 The main target of using Flux principles on Android development is to build an architecture with a good balance between simplicity and ease of scale and test. 
 
@@ -53,7 +53,7 @@ Two of this elements are very easy to figure out and implement.
 - **View**: Activity or Fragment
 - **Dispatcher**: An event bus. I will use Otto in my examples but any other implementation should be fine. 
 
-## Actions
+### Actions
 
 Actions are not complex either. They will be implemented as simple POJOs with two main attributes:
 
@@ -69,7 +69,7 @@ Action action = new ViewAction("SHOW_USER", data);
 ```
 
 
-## Stores
+### Stores
 
 This is perhaps the **most difficult** to get Flux concep. 
 
@@ -111,7 +111,7 @@ Having all the network and asynchronous work out of the Stores has has **two mai
 - **All actions are triggered from an Action Creator**: Having a single point at which you create and launch all user actions greatly simplifies finding errors. 
 Forget about digging into classes to find out where an action is originated. **Everything starts here**. And because asynchronous calls occur _before_, everything that comes out of ActionCreator is synchronous. This is a huge win that significantly improves traceability and testability of the code.
 
-# Show me the code: To-Do App
+## Show me the code: To-Do App
 
 
 [In this example][android-app] you will find a classical **To-Do App** implemented on Android using a Flux Architecture. 
@@ -129,19 +129,19 @@ Some comments about implementation:
     
   Same thing with `Actions` data: they are just a `HashMap` with a `String` key and `Object` as a value. This forces ugly castings on Stores to extract actual data. Of course, this is not type safe but again, keeps the example easy to understand.
 
-# Conclusion
+## Conclusion
 
 The is **no such thing as the Best Architecture for an Android app**. 
 There _is_ the Best Architecture for your current app. And it is the one that let you collaborate with your teammates easily, finish the project on time, with quality and as less bugs as possible.
 
 I believe Flux is very good for all of that.
 
-# Sample source code
+## Sample source code
 
 **[https://github.com/lgvalle/android-flux-todo-app][android-app]**
 
 
-# Further Reading:
+## Further Reading:
 * [Facebook Flux Overview][flux-arch]
 * [Testing Flux Applications](https://facebook.github.io/flux/docs/testing-flux-applications.html#content)
 * [Flux architecture Step by Step](http://blogs.atlassian.com/2014/08/flux-architecture-step-by-step/)
