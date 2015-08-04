@@ -16,7 +16,7 @@ Mobile apps usually **do very little**. A very high percent of use cases are jus
 
 As a result **business logic is not complex**. At least not as complex as web apps have. Well you have to deal with platform issues: memory, storage, pause, resume, network, location, etc. But that is not your app business logic. You have all of that in every app.
 
-So it seems that most of the apps will not benefit from things like decoupled Interactors with job priority execution queues.
+So it seems that most of the apps out there will not benefit from things like  complex layer divisions or job priority execution queues.
 
 They may just need a **simple way to organise code, work together efficiently and find bugs easily**.
 
@@ -25,6 +25,7 @@ They may just need a **simple way to organise code, work together efficiently an
 **[Flux Architecture][flux-arch]** is used by Facebook to build their client- side web applications. Like _Clean Architecture_ it is not intended for mobile apps, but its features and simplicity will allow us to adapt it very well to Android projects.
 
 ![flux-graph-simple]
+*Flux Architecture*
 
 There are two **key features** to understand Flux:
 
@@ -86,6 +87,7 @@ No other component of the system should need to know anything about the status o
 Finally, stores must **expose an interface** to obtain application Status. This way, view elements can query the Stores and update application UI in response.
 
 ![flux-graph-store]
+*Flux Store overview*
 
 For example, in a Pub Discovery App a SearchStore will be used to keep track of searched item, search results and the history of past searches. In the same application a ReviewedStore will contain a list of reviewed pubs and the necessary logic to, for example, sort by review.
 
@@ -163,3 +165,5 @@ I believe Flux is very good for all of that.
 
 
 
+## Thanks
+Special thanks to my colleague [Michele Bertoli](https://twitter.com/MicheleBertoli) for taking the time to introduce me to Flux and for reviewing this post.
