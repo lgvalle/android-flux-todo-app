@@ -133,7 +133,7 @@ Some comments about implementation:
 
 ## Conclusion
 
-The is **no such thing as the Best Architecture for an Android app**. 
+There is **no such thing as the Best Architecture for an Android app**. 
 There _is_ the Best Architecture for your current app. And it is the one that let you collaborate with your teammates easily, finish the project on time, with quality and as less bugs as possible.
 
 I believe Flux is very good for all of that.
