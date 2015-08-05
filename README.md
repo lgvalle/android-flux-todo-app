@@ -1,8 +1,9 @@
 # Flux Architecture on Android
 
+
 Finding a good architecture for Android applications is not easy. Google seems to not care much about it, so there is no official recommendation on patterns beyond Activities lifecycle management.
 
-But defining an architecture for your application is important. Like it or not, **every application is going to have an architecture**. So you'd better be the one defining it then let it just emerge.
+But defining an architecture for your application is important. Like it or not, **every application is going to have an architecture**. So you'd better be the one defining it than let it just emerge.
 
 ## Today: Clean Architecture
 
@@ -14,7 +15,7 @@ Typically **mobile apps live shorter than web apps**. Mobile technology is evolv
 
 Mobile apps usually **do very little**. A very high percent of use cases are just for data consuming. Get data from API, show data to user. Lot of reads, very little writes. 
 
-As a result it's **business logic is not complex**. At least not as complex as backend apps. Well you have to deal with platform issues: memory, storage, pause, resume, network, location, etc. But that is not your app business logic. You have all of that in every app.
+As a result its **business logic is not complex**. At least not as complex as backend apps. Well you have to deal with platform issues: memory, storage, pause, resume, network, location, etc. But that is not your app business logic. You have all of that in every app.
 
 So it seems that most of the apps out there will not benefit from things like  complex layer divisions or job priority execution queues.
 
@@ -25,7 +26,6 @@ They may just need a **simple way to organise code, work together efficiently an
 **[Flux Architecture][flux-arch]** is used by Facebook to build their client- side web applications. Like _Clean Architecture_ it is not intended for mobile apps, but its features and simplicity will allow us to adapt it very well to Android projects.
 
 ![flux-graph-simple]
-*Flux Architecture*
 
 There are two **key features** to understand Flux:
 
@@ -74,9 +74,9 @@ Action action = new ViewAction("SHOW_USER", data);
 
 This is perhaps the **most difficult** to get Flux concept. 
 
-Also If you have worked with Clean Architecture before it also will be uncomfortable to accept, because Stores will assume responsibilities that were previously separated into different layers.
+Also if you have worked with Clean Architecture before it also will be uncomfortable to accept, because Stores will assume responsibilities that were previously separated into different layers.
 
-Stores contain the **status of the application and it business logic**. They are similar to _rich data models_ but they can manage the status of **various objects**, not just one. 
+Stores contain the **status of the application and its business logic**. They are similar to _rich data models_ but they can manage the status of **various objects**, not just one. 
 
 Stores **react to Actions emitted by the Dispatcher**, execute business logic and emit a change event as result.
 
@@ -87,7 +87,6 @@ No other component of the system should need to know anything about the status o
 Finally, stores must **expose an interface** to obtain application Status. This way, view elements can query the Stores and update application UI in response.
 
 ![flux-graph-store]
-*Flux Store overview*
 
 For example, in a Pub Discovery App a SearchStore will be used to keep track of searched item, search results and the history of past searches. In the same application a ReviewedStore will contain a list of reviewed pubs and the necessary logic to, for example, sort by review.
 
@@ -95,7 +94,7 @@ However there is one important concept to keep in mind: **Stores are not Reposit
 
 So how Flux application obtain data?
 
-## Network requests and asynchronous calls
+### Network requests and asynchronous calls
 
 In the initial Flux graph I intentionally skipped one part: **network calls**. Next graph completes first one adding more details:
 
@@ -125,9 +124,9 @@ Some comments about implementation:
 
   * The `Dispatcher` is implemented using Otto Bus. Any bus implementation will mostly work. There is a **Flux restriction** on events I’m not applying here. On original Flux definition dispatching an event before previous one has finish is forbidden and will throw an exception. To keep the project simple I’m not implementing that here.
 
-  * There is an `ActionsCreator` class to help creating `Actions` and posting them into the `Dispatcher`. Is a pretty common pattern in Flux which keeps things organised.
+  * There is an `ActionsCreator` class to help creating `Actions` and posting them into the `Dispatcher`. It is a pretty common pattern in Flux which keeps things organised.
   
-  *  `Actions` types are just `String` constants. Is probably not the best implementation but is quick and helps keeping things simple.
+  *  `Actions` types are just `String` constants. It is probably not the best implementation but is quick and helps keeping things simple.
     
   Same thing with `Actions` data: they are just a `HashMap` with a `String` key and `Object` as a value. This forces ugly castings on Stores to extract actual data. Of course, this is not type safe but again, keeps the example easy to understand.
 
@@ -162,8 +161,6 @@ I believe Flux is very good for all of that.
 [flux-graph-store]: https://raw.githubusercontent.com/lgvalle/lgvalle.github.io/master/public/images/flux-store.png
 
 [android-app]: https://github.com/lgvalle/android-flux-todo-app
-
-
 
 ## Thanks
 Special thanks to my colleague [Michele Bertoli](https://twitter.com/MicheleBertoli) for taking the time to introduce me to Flux and for reviewing this post.
