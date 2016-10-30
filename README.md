@@ -9,7 +9,7 @@ But defining an architecture for your application is important. Like it or not, 
 
 Current trend is to adapt **[Clean Architecture][clean-architecture]**, a 2012 Uncle Bob proposal for web applications.
 
-I find Clean Architecture a little bit **over-engineered** for most of the Android apps out there.
+Although, Clean Architecture could be a little bit **over-engineered** for most of the Android apps out there.
 
 Typically **mobile apps live shorter than web apps**. Mobile technology is evolving so fast that any app released today is going to be completely deprecated in twelve months. 
 
